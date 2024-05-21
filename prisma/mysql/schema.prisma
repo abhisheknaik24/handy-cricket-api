@@ -1,0 +1,113 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+enum MatchType {
+    normal
+    semiFinal
+    final
+}
+
+enum TossChoose {
+    bat
+    bowl
+}
+
+enum Inning {
+    first
+    second
+    over
+}
+
+model Tournament {
+    id       String  @id @default(uuid())
+    image    String  @db.LongText
+    name     String  @db.VarChar(255)
+    isActive Boolean @default(true)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    teams   TournamentTeam[]
+    matches Match[]
+}
+
+model Team {
+    id       String  @id @default(uuid())
+    logo     String  @db.LongText
+    name     String  @db.VarChar(255)
+    isActive Boolean @default(true)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    tournaments TournamentTeam[]
+}
+
+model TournamentTeam {
+    id           String     @id @default(uuid())
+    tournament   Tournament @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+    tournamentId String
+    team         Team       @relation(fields: [teamId], references: [id], onDelete: Cascade)
+    teamId       String
+    isActive     Boolean    @default(true)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    teamOneMatches    Match[] @relation(name: "teamOne")
+    teamTwoMatches    Match[] @relation(name: "teamTwo")
+    playerTeam        Match[] @relation(name: "playerTeam")
+    tossWinnerTeam    Match[] @relation(name: "tossWinnerTeam")
+    winnerTeamMatches Match[] @relation(name: "winnerTeam")
+    loserTeamMatches  Match[] @relation(name: "loserTeam")
+
+    @@index([tournamentId])
+    @@index([teamId])
+}
+
+model Match {
+    id               String          @id @default(uuid())
+    matchNo          Int
+    tournament       Tournament      @relation(fields: [tournamentId], references: [id], onDelete: Cascade)
+    tournamentId     String
+    type             MatchType       @default(normal)
+    teamOne          TournamentTeam  @relation(name: "teamOne", fields: [teamOneId], references: [id], onDelete: Cascade)
+    teamOneId        String
+    teamTwo          TournamentTeam  @relation(name: "teamTwo", fields: [teamTwoId], references: [id], onDelete: Cascade)
+    teamTwoId        String
+    playerTeam       TournamentTeam? @relation(name: "playerTeam", fields: [playerTeamId], references: [id], onDelete: Cascade)
+    playerTeamId     String?
+    tossWinnerTeam   TournamentTeam? @relation(name: "tossWinnerTeam", fields: [tossWinnerTeamId], references: [id], onDelete: Cascade)
+    tossWinnerTeamId String?
+    tossChoose       TossChoose?
+    teamOneStatus    TossChoose?
+    teamOneScore     Int?            @default(0)
+    teamOneWicket    Int?            @default(0)
+    teamOneBalls     Int?            @default(30)
+    teamTwoStatus    TossChoose?
+    teamTwoScore     Int?            @default(0)
+    teamTwoWicket    Int?            @default(0)
+    teamTwoBalls     Int?            @default(30)
+    inning           Inning?         @default(first)
+    winnerTeam       TournamentTeam? @relation(name: "winnerTeam", fields: [winnerTeamId], references: [id], onDelete: Cascade)
+    winnerTeamId     String?
+    loserTeam        TournamentTeam? @relation(name: "loserTeam", fields: [loserTeamId], references: [id], onDelete: Cascade)
+    loserTeamId      String?
+    date             DateTime
+    isActive         Boolean         @default(true)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([tournamentId])
+    @@index([teamOneId])
+    @@index([teamTwoId])
+    @@index([tossWinnerTeamId])
+    @@index([winnerTeamId])
+}
