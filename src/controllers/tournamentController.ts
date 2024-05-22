@@ -409,12 +409,19 @@ const getTournamentPointsTable = async (req: Request, res: Response) => {
       },
     });
 
+    if (!tournament?.teams?.length) {
+      return res.status(200).json({
+        success: false,
+        message: 'Tournament teams not found!',
+      });
+    }
+
     let pointsTable: any[] = [];
 
     tournament?.teams?.forEach((item) => {
       pointsTable.push({
-        id: item.id,
-        team: item.team.name,
+        id: item?.id,
+        team: item?.team?.name,
         totalMatches:
           Number(item?.teamOneMatches?.length) +
           Number(item?.teamTwoMatches?.length),
@@ -497,11 +504,18 @@ const getTournamentQualifier = async (req: Request, res: Response) => {
       },
     });
 
+    if (!tournament?.teams?.length) {
+      return res.status(200).json({
+        success: false,
+        message: 'Tournament teams not found!',
+      });
+    }
+
     let pointsTable: any[] = [];
 
     tournament?.teams?.forEach((item) => {
       pointsTable.push({
-        id: item.id,
+        id: item?.id,
         wins: Number(item?.winnerTeamMatches?.length),
         losses: Number(item?.loserTeamMatches?.length),
         points: Number(item?.winnerTeamMatches?.length) * 2,
@@ -534,7 +548,11 @@ const getTournamentQualifier = async (req: Request, res: Response) => {
       },
     });
 
-    if (Number(tournament?.matches?.length) === Number(totalMatchesPlayed)) {
+    if (
+      !!tournament?.matches?.length &&
+      !!totalMatchesPlayed &&
+      Number(tournament?.matches?.length) === Number(totalMatchesPlayed)
+    ) {
       const topFourTeams = pointsTable.slice(0, 4);
 
       const semiFinalMatchExist = await prisma.match.findMany({
