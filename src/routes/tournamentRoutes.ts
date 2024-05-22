@@ -3,15 +3,21 @@ import tournamentController from '../controllers/tournamentController';
 
 const router: Router = Router();
 
-router.get('/', tournamentController.getTournaments);
+router.get('/getTournaments', tournamentController.getTournaments);
 
-router.get('/:tournamentId', tournamentController.getTournament);
+router.get('/getTournament/:tournamentId', tournamentController.getTournament);
 
-router.post('/', tournamentController.postTournament);
+router.post('/postTournament', tournamentController.postTournament);
 
-router.patch('/:tournamentId', tournamentController.patchTournament);
+router.patch(
+  '/patchTournament/:tournamentId',
+  tournamentController.patchTournament
+);
 
-router.delete('/:tournamentId', tournamentController.deleteTournament);
+router.delete(
+  '/deleteTournament/:tournamentId',
+  tournamentController.deleteTournament
+);
 
 router.get(
   '/getTournamentTeams/:tournamentId',
