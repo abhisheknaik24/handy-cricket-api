@@ -1,4 +1,4 @@
-export const calculateRunRate = (team: any): string => {
+export const calculateRunRate = (team: any): number => {
   let totalRunsScored: number =
     team.teamOneMatches.reduce(
       (acc: number, match: any) => acc + (match.teamOneScore || 0),
@@ -19,5 +19,5 @@ export const calculateRunRate = (team: any): string => {
       0
     );
 
-  return parseFloat(String(totalRunsScored / totalOversFaced)).toFixed(2);
+  return totalRunsScored / totalOversFaced;
 };
