@@ -43,7 +43,7 @@ const getTeam = async (req: Request, res: Response) => {
   const { teamId } = req.params;
 
   if (!teamId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
@@ -80,7 +80,7 @@ const postTeam = async (req: Request, res: Response) => {
   const { logo, name }: { logo: string; name: string } = req.body;
 
   if (!logo?.length || !name?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request body is missing!',
     });
@@ -95,7 +95,7 @@ const postTeam = async (req: Request, res: Response) => {
     });
 
     if (!!teamExist) {
-      return res.status(500).json({
+      return res.status(200).json({
         success: false,
         message: 'Team already exist!',
       });
@@ -133,14 +133,14 @@ const patchTeam = async (req: Request, res: Response) => {
   const { logo, name }: { logo: string; name: string } = req.body;
 
   if (!teamId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
   }
 
   if (!logo?.length || !name?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request body is missing!',
     });
@@ -155,7 +155,7 @@ const patchTeam = async (req: Request, res: Response) => {
     });
 
     if (!!teamExist) {
-      return res.status(500).json({
+      return res.status(200).json({
         success: false,
         message: 'Team already exist!',
       });
@@ -194,7 +194,7 @@ const deleteTeam = async (req: Request, res: Response) => {
   const { teamId } = req.params;
 
   if (!teamId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });

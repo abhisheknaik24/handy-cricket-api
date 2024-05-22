@@ -44,7 +44,7 @@ const getTournament = async (req: Request, res: Response) => {
   const { tournamentId } = req.params;
 
   if (!tournamentId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
@@ -88,7 +88,7 @@ const postTournament = async (req: Request, res: Response) => {
   const { image, name }: { image: string; name: string } = req.body;
 
   if (!image?.length || !name?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request body is missing!',
     });
@@ -103,7 +103,7 @@ const postTournament = async (req: Request, res: Response) => {
     });
 
     if (!!tournamentExist) {
-      return res.status(500).json({
+      return res.status(200).json({
         success: false,
         message: 'Tournament already exist!',
       });
@@ -141,14 +141,14 @@ const patchTournament = async (req: Request, res: Response) => {
   const { image, name }: { image: string; name: string } = req.body;
 
   if (!tournamentId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
   }
 
   if (!image?.length || !name?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request body is missing!',
     });
@@ -163,7 +163,7 @@ const patchTournament = async (req: Request, res: Response) => {
     });
 
     if (!!tournamentExist) {
-      return res.status(500).json({
+      return res.status(200).json({
         success: false,
         message: 'Tournament already exist!',
       });
@@ -202,7 +202,7 @@ const deleteTournament = async (req: Request, res: Response) => {
   const { tournamentId } = req.params;
 
   if (!tournamentId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
@@ -244,7 +244,7 @@ const getTournamentTeams = async (req: Request, res: Response) => {
   const { tournamentId } = req.params;
 
   if (!tournamentId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
@@ -290,14 +290,14 @@ const postTournamentTeam = async (req: Request, res: Response) => {
   const { teamId }: { teamId: string } = req.body;
 
   if (!tournamentId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
   }
 
   if (!teamId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request body is missing!',
     });
@@ -313,7 +313,7 @@ const postTournamentTeam = async (req: Request, res: Response) => {
     });
 
     if (!!tournamentTeamExist) {
-      return res.status(500).json({
+      return res.status(200).json({
         success: false,
         message: 'Tournament team already exist!',
       });
@@ -349,7 +349,7 @@ const deleteTournamentTeam = async (req: Request, res: Response) => {
   const { tournamentTeamId } = req.params;
 
   if (!tournamentTeamId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
@@ -385,7 +385,7 @@ const getTournamentPointsTable = async (req: Request, res: Response) => {
   const { tournamentId } = req.params;
 
   if (!tournamentId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
@@ -472,7 +472,7 @@ const getTournamentQualifier = async (req: Request, res: Response) => {
   const { tournamentId } = req.params;
 
   if (!tournamentId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
