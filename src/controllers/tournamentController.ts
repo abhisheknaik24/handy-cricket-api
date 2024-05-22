@@ -129,7 +129,7 @@ const postTournament = async (req: Request, res: Response) => {
 };
 
 const patchTournament = async (req: Request, res: Response) => {
-  if (req.method !== 'POST') {
+  if (req.method !== 'PATCH') {
     return res.status(400).json({
       success: false,
       message: 'Request method is not allowed!',
@@ -192,7 +192,7 @@ const patchTournament = async (req: Request, res: Response) => {
 };
 
 const deleteTournament = async (req: Request, res: Response) => {
-  if (req.method !== 'POST') {
+  if (req.method !== 'DELETE') {
     return res.status(400).json({
       success: false,
       message: 'Request method is not allowed!',
@@ -339,7 +339,7 @@ const postTournamentTeam = async (req: Request, res: Response) => {
 };
 
 const deleteTournamentTeam = async (req: Request, res: Response) => {
-  if (req.method !== 'POST') {
+  if (req.method !== 'DELETE') {
     return res.status(400).json({
       success: false,
       message: 'Request method is not allowed!',

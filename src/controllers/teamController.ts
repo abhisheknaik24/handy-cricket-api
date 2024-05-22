@@ -121,7 +121,7 @@ const postTeam = async (req: Request, res: Response) => {
 };
 
 const patchTeam = async (req: Request, res: Response) => {
-  if (req.method !== 'POST') {
+  if (req.method !== 'PATCH') {
     return res.status(400).json({
       success: false,
       message: 'Request method is not allowed!',
@@ -184,7 +184,7 @@ const patchTeam = async (req: Request, res: Response) => {
 };
 
 const deleteTeam = async (req: Request, res: Response) => {
-  if (req.method !== 'POST') {
+  if (req.method !== 'DELETE') {
     return res.status(400).json({
       success: false,
       message: 'Request method is not allowed!',
