@@ -5,7 +5,7 @@ const router: Router = Router();
 
 router.get('/:tournamentId/:tournamentTeamId', matchController.getMatches);
 
-router.get('/:tournamentId/:matchId', matchController.getMatch);
+router.get('/getMatch/:tournamentId/:matchId', matchController.getMatch);
 
 router.post('/:tournamentId', matchController.postMatches);
 
