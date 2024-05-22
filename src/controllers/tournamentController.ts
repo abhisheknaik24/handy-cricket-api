@@ -419,6 +419,8 @@ const getTournamentPointsTable = async (req: Request, res: Response) => {
     let pointsTable: any[] = [];
 
     tournament?.teams?.forEach((item) => {
+      const runRate = calculateRunRate(item);
+
       pointsTable.push({
         id: item?.id,
         team: item?.team?.name,
@@ -431,7 +433,7 @@ const getTournamentPointsTable = async (req: Request, res: Response) => {
         wins: Number(item?.winnerTeamMatches?.length),
         losses: Number(item?.loserTeamMatches?.length),
         points: Number(item?.winnerTeamMatches?.length) * 2,
-        runRate: calculateRunRate(item),
+        runRate: !!runRate ? parseFloat(String(runRate)).toFixed(2) : 0,
       });
     });
 
