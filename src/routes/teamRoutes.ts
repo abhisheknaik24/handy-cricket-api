@@ -3,14 +3,14 @@ import teamController from '../controllers/teamController';
 
 const router: Router = Router();
 
-router.get('/getTeams', teamController.getTeams);
+router.get('/', teamController.getTeams);
 
-router.get('/getTeam/:teamId', teamController.getTeam);
+router.get('/:teamId', teamController.getTeam);
 
-router.post('/postTeam', teamController.postTeam);
+router.post('/', teamController.postTeam);
 
-router.patch('/patchTeam/:teamId', teamController.patchTeam);
+router.patch('/:teamId', teamController.patchTeam);
 
-router.delete('/deleteTeam/:teamId', teamController.deleteTeam);
+router.delete('/:teamId', teamController.deleteTeam);
 
 export default router;

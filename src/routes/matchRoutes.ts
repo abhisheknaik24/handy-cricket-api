@@ -3,14 +3,11 @@ import matchController from '../controllers/matchController';
 
 const router: Router = Router();
 
-router.get(
-  '/getMatches/:tournamentId/:tournamentTeamId',
-  matchController.getMatches
-);
+router.get('/:tournamentId/:tournamentTeamId', matchController.getMatches);
 
-router.get('/getMatches/:tournamentId/:matchId', matchController.getMatch);
+router.get('/:tournamentId/:matchId', matchController.getMatch);
 
-router.post('/postMatches/:tournamentId', matchController.postMatches);
+router.post('/:tournamentId', matchController.postMatches);
 
 router.patch(
   '/patchPlayer/:tournamentId/:matchId',
