@@ -234,7 +234,7 @@ const postMatches = async (req: Request, res: Response) => {
 };
 
 const patchPlayer = async (req: Request, res: Response) => {
-  if (req.method !== 'POST') {
+  if (req.method !== 'PATCH') {
     return res.status(400).json({
       success: false,
       message: 'Request method is not allowed!',
@@ -290,7 +290,7 @@ const patchPlayer = async (req: Request, res: Response) => {
 };
 
 const patchToss = async (req: Request, res: Response) => {
-  if (req.method !== 'POST') {
+  if (req.method !== 'PATCH') {
     return res.status(400).json({
       success: false,
       message: 'Request method is not allowed!',
@@ -399,7 +399,7 @@ const patchToss = async (req: Request, res: Response) => {
 };
 
 const patchTossChoose = async (req: Request, res: Response) => {
-  if (req.method !== 'POST') {
+  if (req.method !== 'PATCH') {
     return res.status(400).json({
       success: false,
       message: 'Request method is not allowed!',
@@ -480,7 +480,7 @@ const patchTossChoose = async (req: Request, res: Response) => {
 };
 
 const patchRun = async (req: Request, res: Response) => {
-  if (req.method !== 'POST') {
+  if (req.method !== 'PATCH') {
     return res.status(400).json({
       success: false,
       message: 'Request method is not allowed!',
@@ -721,7 +721,7 @@ const patchRun = async (req: Request, res: Response) => {
 };
 
 const patchSkip = async (req: Request, res: Response) => {
-  if (req.method !== 'POST') {
+  if (req.method !== 'PATCH') {
     return res.status(400).json({
       success: false,
       message: 'Request method is not allowed!',
