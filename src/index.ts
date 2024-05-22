@@ -10,7 +10,7 @@ const app: Express = express();
 
 const port: number = Number(process.env.PORT) || 8000;
 
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 
 app.use(express.urlencoded({ extended: true }));
 

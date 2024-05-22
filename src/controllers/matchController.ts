@@ -18,7 +18,7 @@ const getMatches = async (req: Request, res: Response) => {
   const { tournamentId, tournamentTeamId } = req.params;
 
   if (!tournamentId?.length || !tournamentTeamId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
@@ -109,7 +109,7 @@ const getMatch = async (req: Request, res: Response) => {
   const { tournamentId, matchId } = req.params;
 
   if (!tournamentId?.length || !matchId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
@@ -164,7 +164,7 @@ const postMatches = async (req: Request, res: Response) => {
   const { tournamentId } = req.params;
 
   if (!tournamentId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
@@ -182,7 +182,7 @@ const postMatches = async (req: Request, res: Response) => {
     });
 
     if (tournamentTeams.length < 8) {
-      return res.status(500).json({
+      return res.status(200).json({
         success: false,
         message: 'At least eight teams needed to make a matches!',
       });
@@ -246,14 +246,14 @@ const patchPlayer = async (req: Request, res: Response) => {
   const { playerTeamId }: { playerTeamId: string } = req.body;
 
   if (!tournamentId?.length || !matchId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
   }
 
   if (!playerTeamId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request body is missing!',
     });
@@ -300,7 +300,7 @@ const patchToss = async (req: Request, res: Response) => {
   const { tournamentId, matchId } = req.params;
 
   if (!tournamentId?.length || !matchId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
@@ -319,7 +319,7 @@ const patchToss = async (req: Request, res: Response) => {
     });
 
     if (!matchTeams) {
-      return res.status(500).json({
+      return res.status(200).json({
         success: false,
         message: 'Teams not found!',
       });
@@ -411,14 +411,14 @@ const patchTossChoose = async (req: Request, res: Response) => {
   const { tossChoose }: { tossChoose: string } = req.body;
 
   if (!tournamentId?.length || !matchId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
   }
 
   if (!tossChoose?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request body is missing!',
     });
@@ -433,7 +433,7 @@ const patchTossChoose = async (req: Request, res: Response) => {
     });
 
     if (!matchDetails) {
-      return res.status(500).json({
+      return res.status(200).json({
         success: false,
         message: 'Match details not found!',
       });
@@ -492,14 +492,14 @@ const patchRun = async (req: Request, res: Response) => {
   const { run }: { run: number } = req.body;
 
   if (!tournamentId?.length || !matchId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
   }
 
   if (run < 0 || run > 6) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request body is missing!',
     });
@@ -514,7 +514,7 @@ const patchRun = async (req: Request, res: Response) => {
     });
 
     if (!matchDetails) {
-      return res.status(500).json({
+      return res.status(200).json({
         success: false,
         message: 'Match details not found!',
       });
@@ -731,7 +731,7 @@ const patchSkip = async (req: Request, res: Response) => {
   const { tournamentId, matchId } = req.params;
 
   if (!tournamentId?.length || !matchId?.length) {
-    return res.status(500).json({
+    return res.status(200).json({
       success: false,
       message: 'Request params is missing!',
     });
@@ -746,7 +746,7 @@ const patchSkip = async (req: Request, res: Response) => {
     });
 
     if (!matchDetails) {
-      return res.status(500).json({
+      return res.status(200).json({
         success: false,
         message: 'Match details not found!',
       });
